@@ -23,6 +23,21 @@ public class CharacterController_Dreamscape : MonoBehaviour
     private float jumpTimer = 0f;
     private const float JUMP_GRACE_PERIOD = 0.1f;
 
+    private PhysicsProperties currentSurface;
+
+    [System.Serializable]
+    private struct PhysicsProperties
+    {
+        public float friction;
+        public float bounce;
+
+        public PhysicsProperties(PhysicsMaterial material)
+        {
+            friction = material ? material.dynamicFriction : 1f;
+            bounce = material ? material.bounciness : 0f;
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -74,10 +89,15 @@ public class CharacterController_Dreamscape : MonoBehaviour
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
                 isGrounded = angle <= maxGroundAngle;
                 groundNormal = isGrounded ? hit.normal : Vector3.up;
+                
+                // Get physics material properties
+                PhysicsMaterial material = hit.collider.sharedMaterial;
+                currentSurface = new PhysicsProperties(material);
             }
             else
             {
                 groundNormal = Vector3.up;
+                currentSurface = new PhysicsProperties(null);
             }
         }
 
@@ -106,13 +126,16 @@ public class CharacterController_Dreamscape : MonoBehaviour
         // Calculate acceleration rate based on whether we're trying to stop or move
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         
+        // Apply surface friction to acceleration
+        accelRate *= Mathf.Lerp(1f, currentSurface.friction, isGrounded ? 1f : 0f);
+        
         // Calculate new horizontal velocity
         float speedDif = targetSpeed - currentVelocity.x;
         float movement = speedDif * accelRate * Time.fixedDeltaTime;
         
         // Calculate movement direction along the slope
         Vector3 moveDirection = Vector3.right;
-        if (isGrounded)
+        if (isGrounded && !isJumping)
         {
             // Project movement onto the slope and maintain speed
             moveDirection = Vector3.ProjectOnPlane(moveDirection, groundNormal).normalized;
@@ -122,6 +145,13 @@ public class CharacterController_Dreamscape : MonoBehaviour
             
             // Align velocity with slope to prevent bouncing
             Vector3 slopeVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, groundNormal);
+            
+            // Apply surface friction to velocity
+            if (Mathf.Abs(horizontalInput) < 0.01f)
+            {
+                slopeVelocity *= (1f - currentSurface.friction * Time.fixedDeltaTime);
+            }
+            
             rb.linearVelocity = slopeVelocity;
         }
         
@@ -134,10 +164,13 @@ public class CharacterController_Dreamscape : MonoBehaviour
             rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         
-        // Clamp horizontal velocity
-        Vector3 clampedVelocity = rb.linearVelocity;
-        clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -moveSpeed, moveSpeed);
-        rb.linearVelocity = clampedVelocity;
+        // Clamp horizontal velocity (don't clamp on low friction surfaces)
+        if (currentSurface.friction > 0.1f)
+        {
+            Vector3 clampedVelocity = rb.linearVelocity;
+            clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -moveSpeed, moveSpeed);
+            rb.linearVelocity = clampedVelocity;
+        }
     }
 
     // Optional: visualize ground check in editor
