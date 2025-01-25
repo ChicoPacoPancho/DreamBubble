@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &112963368959708561
@@ -199,3 +199,7 @@ MonoBehaviour:
   m_ItemListPrefab: {fileID: 6209240336379233401, guid: 38ff340e734e340489422c2f1f355572, type: 3}
   m_testItem: {fileID: 0}
   m_journalList: {fileID: 4068175097892488699}
+  m_RevealSpeed: 0.35
+  m_WriteDelay: 0.25
+  m_TimeOnScreen: 3
+  m_HideSpeed: 0.65
