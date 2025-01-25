@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d921bed3f87084bd1b5a3e80dcfdcda0, type: 3}
+  m_Name: BlueberryMuffin_Data
+  m_EditorClassIdentifier: 
+  m_JournalPhrase: Eat a muffin. Yummy!
+  m_Prefab: {fileID: 2079132323164028967, guid: 74180791f1e5943d7b8b3c90ca477788, type: 3}
