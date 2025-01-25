@@ -20,6 +20,7 @@ public static class Globals
         if (dreamItems.Contains(item))
            return;
         
+        Debug.Log("Dream Item Added to List: " + item.name);
         s_DreamItems.Add(item);
         OnDreamItemsChanged?.Invoke();
     }
