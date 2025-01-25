@@ -173,6 +173,18 @@ public class CharacterController_Dreamscape : MonoBehaviour
         }
     }
 
+    public void AddVerticalVelocity(float amount)
+    {
+        // Add upward force using the rigidbody
+        rb.AddForce(Vector3.up * amount, ForceMode.VelocityChange);
+        
+        // Set jumping state to prevent immediate ground detection
+        isJumping = true;
+        jumpTimer = 0f;
+        isGrounded = false;
+        groundNormal = Vector3.up;
+    }
+
     // Optional: visualize ground check in editor
     private void OnDrawGizmosSelected()
     {
