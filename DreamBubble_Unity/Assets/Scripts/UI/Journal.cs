@@ -10,7 +10,7 @@ public class Journal : MonoBehaviour, IPointerClickHandler
     private GameObject m_ItemListPrefab;
 
     [SerializeField]
-    private DreamItem m_testItem;
+    private SelectableItem m_testItem;
 
 
     [SerializeField]
@@ -65,13 +65,13 @@ public class Journal : MonoBehaviour, IPointerClickHandler
     private void UpdateList()
     {
         
+        while(m_journalList.transform.childCount > 0)
+        {
+            DestroyImmediate(m_journalList.transform.GetChild(0).gameObject);
+        }
 
         for (int i = 0; i < Globals.dreamItems.Count; i++)
         {
-            while(m_journalList.transform.childCount > 0)
-            {
-                DestroyImmediate(m_journalList.transform.GetChild(0).gameObject);
-            }
 
             DreamItemData item = Globals.dreamItems[i];
 
