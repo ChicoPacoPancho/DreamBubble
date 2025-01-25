@@ -13,6 +13,7 @@ public class CharacterInteractor : MonoBehaviour
         {
             m_IntersectingItems.Add(dreamItem);
         }
+        
 
         CollidedItemsChanged();
     }
@@ -29,9 +30,31 @@ public class CharacterInteractor : MonoBehaviour
 
     private void CollidedItemsChanged()
     {
+        // Gets the previous highlighted item before it potentially changes
+        SelectableItem previousHighlighted = m_HighlightedItem;
+
+        // Update the highlighted item
         if(GetClosestDreamItem(ref m_HighlightedItem))
         {
-            //highlight item
+            // Turns off outline on previous item if it exists
+            if (previousHighlighted != null && previousHighlighted.TryGetComponent<Outline>(out Outline oldOutline))
+            {
+                oldOutline.enabled = false;
+            }
+
+            // Turns on outline for the new highlighted item
+            if (m_HighlightedItem != null && m_HighlightedItem.TryGetComponent<Outline>(out Outline newOutline))
+            {
+                newOutline.enabled = true;
+            }
+        }
+        else if (m_HighlightedItem == null && previousHighlighted != null)
+        {
+            // Turns off outline when there is no highlighted item
+            if (previousHighlighted.TryGetComponent<Outline>(out Outline outline))
+            {
+                outline.enabled = false;
+            }
         }
     }
 
