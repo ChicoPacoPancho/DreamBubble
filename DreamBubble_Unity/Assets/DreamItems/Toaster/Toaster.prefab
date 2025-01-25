@@ -96,6 +96,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7550496608373925935}
+  - component: {fileID: 8866699597922330918}
+  - component: {fileID: 9221165731827705056}
   m_Layer: 0
   m_Name: Toaster
   m_TagString: Untagged
@@ -119,6 +121,40 @@ Transform:
   - {fileID: 3547438589529918410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8866699597922330918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489044596886932231}
+  m_Material: {fileID: 13400000, guid: 35d184b034a36f14aa2b94ad59014600, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.15556261, y: 0.30036592, z: 0.23377271}
+  m_Center: {x: 0.0072187036, y: 0.007110536, z: 0.111886345}
+--- !u!114 &9221165731827705056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489044596886932231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22673cbb291d4c5a9bbfc74a46eb166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data: {fileID: 11400000, guid: 8671e4eff9cc64b16b3c2ee8e8045083, type: 2}
 --- !u!1 &7831176066699981689
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,12 +4,12 @@ using UnityEngine;
 public class CharacterInteractor : MonoBehaviour
 {
 
-    private List<DreamItem> m_IntersectingItems = new List<DreamItem>();
-    private DreamItem m_HighlightedItem;
+    private List<SelectableItem> m_IntersectingItems = new List<SelectableItem>();
+    private SelectableItem m_HighlightedItem;
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.TryGetComponent<DreamItem>(out DreamItem dreamItem))
+        if(other.TryGetComponent<SelectableItem>(out SelectableItem dreamItem))
         {
             m_IntersectingItems.Add(dreamItem);
         }
@@ -19,7 +19,7 @@ public class CharacterInteractor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.TryGetComponent<DreamItem>(out DreamItem dreamItem))
+        if(other.TryGetComponent<SelectableItem>(out SelectableItem dreamItem))
         {
             m_IntersectingItems.Remove(dreamItem);
         }
@@ -35,7 +35,7 @@ public class CharacterInteractor : MonoBehaviour
         }
     }
 
-    private bool GetClosestDreamItem(ref DreamItem closestItem)
+    private bool GetClosestDreamItem(ref SelectableItem closestItem)
     {
         float closestDistance = Mathf.Infinity;
         float itemDistance;
@@ -46,7 +46,13 @@ public class CharacterInteractor : MonoBehaviour
             closestDistance = Vector3.Distance(transform.position, closestItem.transform.position);
         }
 
-        foreach(DreamItem dreamItem in m_IntersectingItems)
+        if(m_IntersectingItems.Count == 0)
+        {
+            closestItem = null;
+            return false;
+        }
+
+        foreach(SelectableItem dreamItem in m_IntersectingItems)
         {
             itemDistance = Vector3.Distance(transform.position, dreamItem.transform.position);
             if(itemDistance < closestDistance)

@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6386521255005608002}
   - component: {fileID: 5643952248947980386}
+  - component: {fileID: 3968979598912456012}
   m_Layer: 0
   m_Name: ThoughtBubble
   m_TagString: Untagged
@@ -157,3 +158,16 @@ MonoBehaviour:
   speed: 6
   m_DreamItemId: 0
   testDreamItem: {fileID: 11400000, guid: 1da4f7e834e36410eb5ec9eb4f5d1715, type: 2}
+--- !u!114 &3968979598912456012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991136466662245494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3205dbc0b6141af96972c56560b4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Data: {fileID: 0}
