@@ -13,6 +13,11 @@ public class Journal : MonoBehaviour, IPointerClickHandler
     private SelectableItem m_testItem;
 
 
+
+    private RectTransform m_RectTransform;
+    private float m_StartX;
+
+
     [SerializeField]
     private GameObject m_journalList;
 
@@ -26,6 +31,9 @@ public class Journal : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         Globals.OnDreamItemsChanged += Globals_OnDreamItemsChanged;
+
+        m_RectTransform = transform as RectTransform;
+        m_StartX = m_RectTransform.anchoredPosition.x;
     }
 
     private void Update() 
@@ -46,19 +54,24 @@ public class Journal : MonoBehaviour, IPointerClickHandler
 
     private void PlayRevealAnimation(bool updateList = true)
     {
-        RectTransform rect = transform as RectTransform;
-        float startX = rect.anchoredPosition.x;
+        if(m_IsRevealed)
+        {
+            //skip animation and just add to the list if the journal is already revealed
+            if (updateList) UpdateList();   
+
+            return;
+        }
 
         m_IsRevealed = true;
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(rect.DOAnchorPosX(0, m_RevealSpeed).SetEase(Ease.InOutSine));
-        sequence.Insert(m_TimeOnScreen, rect.DOAnchorPosX(startX, m_HideSpeed).SetEase(Ease.InOutSine));
+        sequence.Append(m_RectTransform.DOAnchorPosX(0, m_RevealSpeed).SetEase(Ease.InOutSine));
+        sequence.Insert(m_TimeOnScreen, m_RectTransform.DOAnchorPosX(m_StartX, m_HideSpeed).SetEase(Ease.InOutSine));
         sequence.AppendCallback(() => m_IsRevealed = false);
 
         if (updateList)
         {
-        sequence.InsertCallback(m_RevealSpeed + m_WriteDelay, UpdateList);
+            sequence.InsertCallback(m_RevealSpeed + m_WriteDelay, UpdateList);
         }
     }
 
