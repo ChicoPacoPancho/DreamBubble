@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterCamera_House : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform target; // The player to follow
     [SerializeField] private Vector3 offset = new Vector3(0, 5, -10); // Default camera offset
