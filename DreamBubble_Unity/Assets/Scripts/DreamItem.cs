@@ -9,10 +9,9 @@ public class DreamItem : MonoBehaviour
 
     [SerializeField] private float m_BubbleScale = 1.0f;
     [SerializeField] private float m_DreamScale = 1.0f;
-
     private Collider[] m_Colliders;
 
-    private void Start()
+    private void Awake()
     {
         transform.localScale = Vector3.one * m_BubbleScale;
 
@@ -23,19 +22,20 @@ public class DreamItem : MonoBehaviour
         }
 
         m_Colliders = GetComponentsInChildren<Collider>(true);
+    }
+
+    public void SetCollision(bool enabled)
+    {
         foreach(Collider collider in m_Colliders)
         {
-            collider.enabled = false;
+            collider.enabled = enabled;
         }
     }
 
     public void PlaceInDream()
     {
 
-        foreach(Collider collider in m_Colliders)
-        {
-            collider.enabled = true;
-        }
+        SetCollision(true);
 
         m_Rigidbody.isKinematic = false;
         m_Rigidbody.useGravity = true;
