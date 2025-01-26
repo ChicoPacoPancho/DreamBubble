@@ -20,14 +20,15 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
 
     private void Start() 
     {
-        Globals.AddDreamItem(testDreamItem);
-
         m_TargetOffset = transform.position - m_TargetTransform.position;
 
         if(Globals.dreamItems.Count <= m_DreamItemId)
         {
             Pop();
             return;
+        }else if(Globals.dreamItems.Count == 0)
+        {
+            Globals.AddDreamItem(testDreamItem);
         }
 
         DreamItemData itemData = Globals.dreamItems[m_DreamItemId];
