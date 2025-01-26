@@ -9,8 +9,8 @@ public class EndGoal : MonoBehaviour
 
         Debug.Log("You Win!");
 
-        SceneManager.LoadScene("TitleScreen");
-
         Globals.ClearDreamItems();
+
+        SceneManager.LoadScene("TitleScreen");
     }
 }
