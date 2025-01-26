@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dreamscape.unity
-    guid: 6ca227fd1ea635f49b5a5a8eac1cd305
-  - enabled: 1
     path: Assets/Scenes/House.unity
     guid: 1bce2a23a608ff14eac7c1313940ad20
+  - enabled: 1
+    path: Assets/Scenes/Dreamscape.unity
+    guid: 6ca227fd1ea635f49b5a5a8eac1cd305
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using DG;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using System;
 
 public class Journal : MonoBehaviour, IPointerClickHandler
 {
@@ -28,12 +29,26 @@ public class Journal : MonoBehaviour, IPointerClickHandler
 
     private bool m_IsRevealed = false;
 
+
+    [SerializeField] private GameObject m_EndText;
+    
+    
     private void Awake()
     {
         Globals.OnDreamItemsChanged += Globals_OnDreamItemsChanged;
 
+        DayLevelController.OnDayCompleted += DayLevelController_OnDayCompleted;
+
         m_RectTransform = transform as RectTransform;
         m_StartX = m_RectTransform.anchoredPosition.x;
+    }
+
+    private void DayLevelController_OnDayCompleted()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Insert(0.5f, m_RectTransform.DOScale(Vector3.one * 1.2f, 0.2f).SetEase(Ease.InSine));
+        sequence.AppendCallback(() => { m_EndText.SetActive(true);});
+        sequence.Append(m_RectTransform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack));
     }
 
     private void Update() 
@@ -64,6 +79,8 @@ public class Journal : MonoBehaviour, IPointerClickHandler
 
         m_IsRevealed = true;
 
+        UpdateList();
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Append(m_RectTransform.DOAnchorPosX(0, m_RevealSpeed).SetEase(Ease.InOutSine));
         sequence.Insert(m_TimeOnScreen, m_RectTransform.DOAnchorPosX(m_StartX, m_HideSpeed).SetEase(Ease.InOutSine));

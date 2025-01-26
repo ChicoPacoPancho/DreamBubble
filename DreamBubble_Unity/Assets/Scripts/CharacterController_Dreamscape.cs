@@ -14,6 +14,8 @@ public class CharacterController_Dreamscape : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.3f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private string platformTag = "Platform";
+    [SerializeField] private string bounceTag = "Bounce";
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -22,6 +24,11 @@ public class CharacterController_Dreamscape : MonoBehaviour
     private bool isJumping = false;
     private float jumpTimer = 0f;
     private const float JUMP_GRACE_PERIOD = 0.1f;
+    private Transform platformParent;
+    private Vector3 lastPlatformPosition;
+    private Vector3 platformVelocity;
+    private bool wasOnPlatform;
+    private Vector3 lastCharacterPosition;
 
     private PhysicsProperties currentSurface;
 
@@ -47,10 +54,21 @@ public class CharacterController_Dreamscape : MonoBehaviour
 
     private void Update()
     {
-        // Get input
+        // Store platform position at start of frame
+        if (platformParent != null)
+        {
+            Vector3 platformDelta = platformParent.position - lastPlatformPosition;
+            if (isGrounded)
+            {
+                // Move with platform
+                transform.position += platformDelta;
+            }
+            lastPlatformPosition = platformParent.position;
+        }
+
+        // Get input and handle character flipping
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        // Flip character based on movement direction
         if (horizontalInput != 0)
         {
             transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
@@ -73,29 +91,56 @@ public class CharacterController_Dreamscape : MonoBehaviour
         Vector3 rayDirection = Vector3.down;
         float rayDistance = groundCheckRadius * 2f;
 
-        // Only check for ground if we're not in jump grace period
         if (!isJumping)
         {
-            // Do three raycasts - one center, one slightly forward, one slightly back
             bool centerHit = Physics.SphereCast(rayStart, groundCheckRadius, rayDirection, out hit, rayDistance, groundLayer);
             bool forwardHit = Physics.SphereCast(rayStart + transform.forward * groundCheckDistance, groundCheckRadius, rayDirection, out hit, rayDistance, groundLayer);
             bool backHit = Physics.SphereCast(rayStart - transform.forward * groundCheckDistance, groundCheckRadius, rayDirection, out hit, rayDistance, groundLayer);
             
             isGrounded = centerHit || forwardHit || backHit;
 
-            // Only consider surface ground if it's within our max angle
-            if (isGrounded)
+            if (isGrounded && hit.collider != null)
             {
-                float angle = Vector3.Angle(hit.normal, Vector3.up);
-                isGrounded = angle <= maxGroundAngle;
-                groundNormal = isGrounded ? hit.normal : Vector3.up;
-                
-                // Get physics material properties
-                PhysicsMaterial material = hit.collider.sharedMaterial;
-                currentSurface = new PhysicsProperties(material);
+                // Check if this is a bounce surface
+                if (hit.collider.CompareTag(bounceTag))
+                {
+                    // Allow bounce physics to take over
+                    isGrounded = false;
+                    groundNormal = Vector3.up;
+                    
+                    // Get physics material properties for bounce
+                    PhysicsMaterial material = hit.collider.sharedMaterial;
+                    if (material != null)
+                    {
+                        // Preserve downward velocity for proper bounce
+                        rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, 0);
+                    }
+                }
+                else if (hit.collider.CompareTag(platformTag))
+                {
+                    // Normal platform handling
+                    if (platformParent != hit.collider.transform)
+                    {
+                        platformParent = hit.collider.transform;
+                        lastPlatformPosition = platformParent.position;
+                    }
+                }
+
+                // Only consider surface ground if it's within our max angle and not a bounce surface
+                if (!hit.collider.CompareTag(bounceTag))
+                {
+                    float angle = Vector3.Angle(hit.normal, Vector3.up);
+                    isGrounded = angle <= maxGroundAngle;
+                    groundNormal = isGrounded ? hit.normal : Vector3.up;
+                    
+                    // Get physics material properties
+                    PhysicsMaterial material = hit.collider.sharedMaterial;
+                    currentSurface = new PhysicsProperties(material);
+                }
             }
             else
             {
+                platformParent = null;
                 groundNormal = Vector3.up;
                 currentSurface = new PhysicsProperties(null);
             }
@@ -114,9 +159,15 @@ public class CharacterController_Dreamscape : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Remove platform movement from FixedUpdate
+        
+        // Regular movement code
         Vector3 currentVelocity = rb.linearVelocity;
         float targetSpeed = horizontalInput * moveSpeed;
-        
+        Vector3 position = transform.position;
+        position.z = 0;
+        transform.position = position;
+
         // Apply air speed multiplier when not grounded
         if (!isGrounded)
         {
@@ -193,5 +244,12 @@ public class CharacterController_Dreamscape : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
+    }
+
+    private void OnDisable()
+    {
+        platformParent = null;
+        wasOnPlatform = false;
+        platformVelocity = Vector3.zero;
     }
 }

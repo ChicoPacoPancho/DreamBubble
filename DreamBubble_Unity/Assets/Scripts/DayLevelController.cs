@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DayLevelController : MonoBehaviour
 {
     public int dreamItemsPerDay = 3;
+
+    public static Action OnDayCompleted;
+
+    [SerializeField] private Animator characterAnimator;
 
     void Start()
     {
@@ -15,22 +20,21 @@ public class DayLevelController : MonoBehaviour
     {
         if(Globals.dreamItems.Count == dreamItemsPerDay)
         {
-            GoToSleep();
+            OnDayCompleted?.Invoke();
+
+            StartCoroutine(Co_EndDay());
         }
     }
 
-    void Update()
+    private IEnumerator Co_EndDay()
     {
-        //debug stuff. Delete later
-        if(Input.GetKeyDown(KeyCode.RightCurlyBracket))
-        {
-            GoToSleep();
-        }
-    }
+        yield return new WaitForSeconds(1f);
 
+        characterAnimator?.SetTrigger("GoToSleep");
 
-    private void GoToSleep()
-    {
+        //wait for 6 seconds
+        yield return new WaitForSeconds(2.2f);
+
         //load Dreamscape scene
         SceneManager.LoadScene("Dreamscape");
     }
