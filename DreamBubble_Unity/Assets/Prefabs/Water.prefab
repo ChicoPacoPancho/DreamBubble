@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4757705171807585284}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: InstantDeath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5285734, z: 1}
-  m_Center: {x: 0, y: -0.23571329, z: 0}
+  m_Center: {x: 0, y: 0.04, z: 0}
 --- !u!1 &5683722418341485794
 GameObject:
   m_ObjectHideFlags: 0

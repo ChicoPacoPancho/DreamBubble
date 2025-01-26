@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d921bed3f87084bd1b5a3e80dcfdcda0, type: 3}
-  m_Name: Carrot_Data
+  m_Name: Sponge_Data
   m_EditorClassIdentifier: 
-  m_JournalPhrase: Improved my eyesight!
-  m_Prefab: {fileID: 8290093633171544144, guid: d4a9e8b31466b574f94516835fd8798d, type: 3}
+  m_JournalPhrase: Cleaned the dishes!
+  m_Prefab: {fileID: 2152563451600956708, guid: 04a20e96ec0203745b79af0906a7160d, type: 3}
