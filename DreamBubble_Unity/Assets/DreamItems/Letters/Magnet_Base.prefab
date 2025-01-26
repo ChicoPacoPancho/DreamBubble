@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sinkSpeed: 1
   sinkDelay: 0.5
-  maxSinkDistance: 10
+  maxSinkDistance: 4
   resetTime: 3
 --- !u!65 &1825899550558546912
 BoxCollider:
