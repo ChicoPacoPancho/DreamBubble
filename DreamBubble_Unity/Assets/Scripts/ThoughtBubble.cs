@@ -17,6 +17,8 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
     private DreamItem m_DreamItem;
     public DreamItemData testDreamItem;
 
+    private AudioSource popAudio;
+
 
     private void Start() 
     {
@@ -43,6 +45,8 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
 
         m_DreamItem = Instantiate(itemData.prefab, transform.position, Quaternion.identity, transform).GetComponent<DreamItem>();
         m_DreamItem.SetCollision(false);
+
+        popAudio = GetComponent<AudioSource>();
     }
 
     public void UpdateFollowPosition()
@@ -71,5 +75,7 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
         {
             m_DreamItem.PlaceInDream();
         }
+
+        popAudio.Play();
     }
 }

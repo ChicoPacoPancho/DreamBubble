@@ -17,6 +17,7 @@ public class CharacterController_Dreamscape : MonoBehaviour
     [SerializeField] private string platformTag = "Platform";
     [SerializeField] private string bounceTag = "Bounce";
 
+    private AudioSource jumpAudio;
     private Rigidbody rb;
     private bool isGrounded;
     private float horizontalInput;
@@ -46,6 +47,7 @@ public class CharacterController_Dreamscape : MonoBehaviour
 
     private void Awake()
     {
+        jumpAudio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         // Freeze rotation to prevent tipping
         rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -153,6 +155,8 @@ public class CharacterController_Dreamscape : MonoBehaviour
             jumpTimer = 0f;
             isGrounded = false;
             groundNormal = Vector3.up;
+            
+            jumpAudio.Play();
         }
     }
 
@@ -227,7 +231,7 @@ public class CharacterController_Dreamscape : MonoBehaviour
     {
         // Add upward force using the rigidbody
         rb.AddForce(Vector3.up * amount, ForceMode.VelocityChange);
-        
+
         // Set jumping state to prevent immediate ground detection
         isJumping = true;
         jumpTimer = 0f;
