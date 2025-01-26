@@ -118,7 +118,7 @@ MonoBehaviour:
   airSpeedMultiplier: 0.7
   acceleration: 10
   deceleration: 5
-  jumpForce: 8
+  jumpForce: 10
   fallMultiplier: 4
   groundCheckRadius: 0.15
   maxGroundAngle: 45
