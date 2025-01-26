@@ -59,6 +59,8 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
     {
         transform.DOScale(Vector3.one * 1.5f, 0.25f).SetEase(Ease.OutBack).OnComplete(() => {Destroy(gameObject);});
 
+        
+
         m_DreamItem.PlaceInDream();
         
     }
