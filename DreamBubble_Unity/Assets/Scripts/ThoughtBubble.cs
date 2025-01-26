@@ -42,6 +42,7 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
         Debug.Log("Dream Item: " + itemData.name);
 
         m_DreamItem = Instantiate(itemData.prefab, transform.position, Quaternion.identity, transform).GetComponent<DreamItem>();
+        m_DreamItem.SetCollision(false);
     }
 
     public void UpdateFollowPosition()
