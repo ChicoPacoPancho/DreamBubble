@@ -27,7 +27,6 @@ public class CharacterController_Dreamscape : MonoBehaviour
     private Transform platformParent;
     private Vector3 lastPlatformPosition;
     private Vector3 platformVelocity;
-    private bool wasOnPlatform;
     private Vector3 lastCharacterPosition;
 
     private PhysicsProperties currentSurface;
@@ -249,7 +248,6 @@ public class CharacterController_Dreamscape : MonoBehaviour
     private void OnDisable()
     {
         platformParent = null;
-        wasOnPlatform = false;
         platformVelocity = Vector3.zero;
     }
 }
