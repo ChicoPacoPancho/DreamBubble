@@ -43,6 +43,12 @@ public class Journal : MonoBehaviour, IPointerClickHandler
         m_StartX = m_RectTransform.anchoredPosition.x;
     }
 
+    private void OnDestroy()
+    {
+        Globals.OnDreamItemsChanged -= Globals_OnDreamItemsChanged;
+        DayLevelController.OnDayCompleted -= DayLevelController_OnDayCompleted;
+    }
+
     private void DayLevelController_OnDayCompleted()
     {
         Sequence sequence = DOTween.Sequence();

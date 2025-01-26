@@ -16,6 +16,11 @@ public class DayLevelController : MonoBehaviour
         Globals.OnDreamItemsChanged += OnDreamItemsChanged;
     }
 
+    void OnDestroy()
+    {
+        Globals.OnDreamItemsChanged -= OnDreamItemsChanged;
+    }
+
     private void OnDreamItemsChanged()
     {
         if(Globals.dreamItems.Count == dreamItemsPerDay)
