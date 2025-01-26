@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 1837982258839709124}
   - component: {fileID: 1256764905366712244}
   - component: {fileID: 4683953168131309879}
+  - component: {fileID: 6459042998161927253}
+  - component: {fileID: 4077521677308628665}
   m_Layer: 0
   m_Name: BlueberryMuffin_Dreamscape
   m_TagString: Untagged
@@ -77,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3205dbc0b6141af96972c56560b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BubbleScale: 3
+  m_DreamScale: 10
 --- !u!54 &4683953168131309879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,6 +108,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6459042998161927253
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079132323164028967}
+  m_Material: {fileID: 13400000, guid: 35d184b034a36f14aa2b94ad59014600, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.15, y: 0.13, z: 0.15}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4077521677308628665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079132323164028967}
+  m_Material: {fileID: 13400000, guid: 13e5e8a53ada78147943f231f834b5cc, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18, y: 0.08, z: 0.18}
+  m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!1001 &5982091314396999258
 PrefabInstance:
   m_ObjectHideFlags: 0
