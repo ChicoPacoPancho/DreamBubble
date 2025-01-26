@@ -24,6 +24,12 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
 
         m_TargetOffset = transform.position - m_TargetTransform.position;
 
+        if(Globals.dreamItems.Count <= m_DreamItemId)
+        {
+            Pop();
+            return;
+        }
+
         DreamItemData itemData = Globals.dreamItems[m_DreamItemId];
 
         if(itemData == null)
@@ -59,9 +65,9 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
     {
         transform.DOScale(Vector3.one * 1.5f, 0.25f).SetEase(Ease.OutBack).OnComplete(() => {Destroy(gameObject);});
 
-        
-
-        m_DreamItem.PlaceInDream();
-        
+        if(m_DreamItem != null)
+        {
+            m_DreamItem.PlaceInDream();
+        }
     }
 }
