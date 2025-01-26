@@ -64,8 +64,10 @@ public class SinkingPlatform : MonoBehaviour
                 float sinkAmount = sinkSpeed * Time.deltaTime;
                 currentSinkDistance += sinkAmount;
                 
+                Vector3 down = transform.InverseTransformDirection(Vector3.down);
                 // Move platform down
-                transform.Translate(Vector3.down * sinkAmount);
+                transform.Translate(down * sinkAmount);
+                
             }
         }
     }
