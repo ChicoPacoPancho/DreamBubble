@@ -27,7 +27,9 @@ public class Journal : MonoBehaviour, IPointerClickHandler
     [SerializeField] private float m_TimeOnScreen = 3f;
     [SerializeField] private float m_HideSpeed = 0.65f;
 
+
     private bool m_IsRevealed = false;
+    private Coroutine m_WaitToHideCoroutine;
 
 
     [SerializeField] private GameObject m_EndText;
@@ -70,32 +72,35 @@ public class Journal : MonoBehaviour, IPointerClickHandler
 
     private void Globals_OnDreamItemsChanged()
     {
+        UpdateList();  
+
         PlayRevealAnimation();
     }
 
     private void PlayRevealAnimation(bool updateList = true)
     {
+
         if(m_IsRevealed)
         {
-            //skip animation and just add to the list if the journal is already revealed
-            if (updateList) UpdateList();   
+            StopCoroutine(m_WaitToHideCoroutine);
+            m_WaitToHideCoroutine = StartCoroutine(Co_WaitToHide());
 
             return;
         }
 
         m_IsRevealed = true;
 
-        UpdateList();
-        
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(m_RectTransform.DOAnchorPosX(0, m_RevealSpeed).SetEase(Ease.InOutSine));
-        sequence.Insert(m_TimeOnScreen, m_RectTransform.DOAnchorPosX(m_StartX, m_HideSpeed).SetEase(Ease.InOutSine));
-        sequence.AppendCallback(() => m_IsRevealed = false);
+        m_RectTransform.DOAnchorPosX(0, m_RevealSpeed).SetEase(Ease.InOutSine).OnComplete(() => {m_WaitToHideCoroutine = StartCoroutine(Co_WaitToHide());});
 
-        if (updateList)
-        {
-            sequence.InsertCallback(m_RevealSpeed + m_WriteDelay, UpdateList);
-        }
+    }
+
+    private IEnumerator Co_WaitToHide()
+    {
+        yield return new WaitForSeconds(m_TimeOnScreen);
+
+        m_RectTransform.DOAnchorPosX(m_StartX, m_HideSpeed).SetEase(Ease.InOutSine);
+
+        m_IsRevealed = false;
     }
 
     private void UpdateList()

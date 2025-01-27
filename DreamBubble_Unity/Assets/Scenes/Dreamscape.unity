@@ -399,6 +399,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1482291367327681735, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742481326333997750, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613776277014286364, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4578408272631922151, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -462,6 +474,10 @@ PrefabInstance:
     - target: {fileID: 8330171958121313870, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
       propertyPath: m_Name
       value: Magnet_G
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330171958121313870, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2613,13 +2629,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magnet_J
       objectReference: {fileID: 0}
+    - target: {fileID: 1451217219335928931, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4111598128147279819, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169864956610386481, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354775940574246858, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6354775940574246858, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298829236160874218, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194094882257156251, guid: 4184c646b059c45fb91a08113b908b05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3865,9 +3901,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1482291367327681735, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742481326333997750, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613776277014286364, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578408272631922151, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4578408272631922151, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6824679304130864614, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
       propertyPath: m_Enabled
@@ -3928,6 +3980,10 @@ PrefabInstance:
     - target: {fileID: 8330171958121313870, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
       propertyPath: m_Name
       value: Magnet_G (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330171958121313870, guid: 66914600e3a384b5d9d4640d141ebcf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4573,7 +4629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6121878596792151331, guid: 4c6d83cdcd06d496eadddcf1e0281d0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 132
+      value: -9.7
       objectReference: {fileID: 0}
     - target: {fileID: 6121878596792151331, guid: 4c6d83cdcd06d496eadddcf1e0281d0f, type: 3}
       propertyPath: m_LocalPosition.y
