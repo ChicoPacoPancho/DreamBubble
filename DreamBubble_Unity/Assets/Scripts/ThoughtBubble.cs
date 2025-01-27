@@ -9,7 +9,6 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Transform m_TargetTransform;
 
-    private Vector3 m_TargetOffset;
 
     public float speed = 10f;
 
@@ -22,7 +21,7 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
 
     private void Start() 
     {
-        m_TargetOffset = transform.position - m_TargetTransform.position;
+        transform.position = m_TargetTransform.position;
 
         if(Globals.dreamItems.Count <= m_DreamItemId)
         {
@@ -51,7 +50,7 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
 
     public void UpdateFollowPosition()
     {
-        Vector3 targetPosition = m_TargetTransform.position + m_TargetOffset;
+        Vector3 targetPosition = m_TargetTransform.position;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * speed);
     }
 
