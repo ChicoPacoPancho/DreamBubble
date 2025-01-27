@@ -62,7 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6144480700285624393, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
       propertyPath: m_Name
-      value: Magnet_Base Variant
+      value: Magnet_E
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146092052983365562, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146092052983365562, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
+      propertyPath: m_Center.x
+      value: 0.033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

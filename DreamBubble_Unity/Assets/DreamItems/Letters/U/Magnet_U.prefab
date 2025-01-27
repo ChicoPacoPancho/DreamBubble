@@ -62,14 +62,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6144480700285624393, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
       propertyPath: m_Name
-      value: Magnet_Base Variant
+      value: Magnet_U
       objectReference: {fileID: 0}
     - target: {fileID: 6146092052983365562, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
       propertyPath: m_Size.x
       value: 0.52
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6146092052983365562, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4535593690765894833, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3037869038171160200}
   m_SourcePrefab: {fileID: 100100000, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
+--- !u!1 &8963728229465886247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4535593690765894833, guid: 3ea629616988341ce8977c41637e3d9f, type: 3}
+  m_PrefabInstance: {fileID: 4797500440200489622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3037869038171160200
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8963728229465886247}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5546472785314633995, guid: 01c00c40a1db64244ba7c369b48dc91a, type: 3}
