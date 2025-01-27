@@ -2555,6 +2555,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.317
       objectReference: {fileID: 0}
+    - target: {fileID: 6668462858738696357, guid: 54c66463c35ffdf4bab2322c89035450, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -20.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8895245092596471617, guid: 54c66463c35ffdf4bab2322c89035450, type: 3}
       propertyPath: m_Name
       value: Kitchen_Level_01
